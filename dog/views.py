@@ -24,7 +24,7 @@ def new_article(request):
         else:
             print('err:',form.errors)
     DogType_list = models.DogType.objects.all().values_list()
-    return render(request,'new.html', {'categroy_list':DogType_list})
+    return render(request,'new.html', {'DogType_list':DogType_list})
 
 
 def acc_logout(request):
@@ -34,8 +34,9 @@ def acc_logout(request):
 def acc_login(request):
     err_msg =''
     if request.method == "POST":
+
         username = request.POST.get('username')
-        password = request.POST.get('password')
+        password = request.POST.get('passwd')
         user = authenticate(username=username,password=password)
         if user is not None:
             login(request,user)
