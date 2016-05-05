@@ -1,6 +1,7 @@
 {% extends 'template.html' %}
 
 {% block head-template %}
+    <link rel="stylesheet" href="/static/css/commont.css">
 {% endblock %}
 {% block body-template %}
     <div class="container">
@@ -40,21 +41,57 @@
              <span class="glyphicon glyphicon-chevron-right"></span></a>
         </div>
         {#轮播结束#}
-        <!--中型犬区域 start-->
-        <div style="margin-top:15px;" class="alert alert-warning" role="alert">中型犬</div>
+        <!--大型犬区域 start-->
+        <div style="margin-top:15px;" class="alert alert-warning article_list" role="alert">大型犬</div>
         <div class="row">
-            <div class="col-xs-6 col-lg-4">
-                <a href="#" class="thumbnail">
-                    <img src="" alt="">
-                    <a class="btn btn-default" href="#" role="button">带我走吧 &raquo;</a>
-                </a>
-            </div>
+            {% for item in big %}
+                <div class="col-xs-6 col-lg-4 article_list">
+                    <a href="{% url 'article' item.id %}" class="thumbnail">
+                        <div class="img_div">
+                            <img src="{{ item.DogImg }}">
+                            <div class="caption">
+                              <p>{{ item.DogName }}</p>
+                            </div>
+                        </div>
+
+                    </a>
+                </div>
+            {% endfor %}
+        </div><!--/row-->
+
+        <!--大型犬区域 end-->
+
+        <!--中型犬区域 start-->
+        <div style="margin-top:15px;" class="alert alert-warning article_list" role="alert">中型犬</div>
+        <div class="row">
+            {% for item in inside %}
+                <div class="col-xs-6 col-lg-4">
+                    <a href="{% url 'article' item.id %}" class="thumbnail">
+                        <img src="{{ item.DogImg }}">
+                        <a href="{% url 'article' item.id %}" role="button">{{ item.DogName }} &raquo;</a>
+                    </a>
+                </div>
+            {% endfor %}
         </div><!--/row-->
         <!--中型犬区域 end-->
+
+        <!--小型犬区域 start-->
+        <div style="margin-top:15px;" class="alert alert-warning" role="alert">中型犬</div>
+        <div class="row">
+            {% for item in small %}
+                <div class="col-xs-6 col-lg-4">
+                    <a href="{% url 'article' item.id %}" class="thumbnail">
+                        <div class="img"><img src="{{ item.DogImg }}"></div>
+                        <a href="{% url 'article' item.id %}" role="button">{{ item.DogName }} &raquo;</a>
+                    </a>
+                </div>
+            {% endfor %}
+        </div><!--/row-->
+        <!--小型犬区域 end-->
 {% endblock %}
 
 {% block bottom-template %}
-    <script>
+    <script type="text/javascript">
         $(function(){$('.carousel').carousel();});
     </script>
 {% endblock %}

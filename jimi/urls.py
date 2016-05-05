@@ -18,7 +18,7 @@ from django.contrib import admin
 from dog import views
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^$', views.index),
+    url(r'^$', views.index,name='index'),
     url(r'^article/new/$',views.new_article,name="new_article"),
     url(r'^article/(\d+)/$', views.article, name='article'),
     url(r'^login/$',views.acc_login,name="login"),

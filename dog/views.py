@@ -6,13 +6,19 @@ import models
 from forms import ArticleForm,head_img
 # Create your views here.
 def index(request):
-    print 'hehheda'
-    dog_data = models.DogInfo.objects.all()
-    print 'data',dog_data
-    # big = dog_data.
-    # inside
-    # small
-    return render(request, 'index.html',{'dog_data':dog_data})
+    big = []
+    inside = []
+    small = []
+    dog_data = models.DogInfo.objects.all().values()
+    for dog in dog_data:
+        if dog['DogType_id'] == 1:
+            big.append(dog)
+        elif dog['DogType_id'] == 2:
+            inside.append(dog)
+        else:
+            small.append(dog)
+
+    return render(request, 'index.html',{'big':big,'inside':inside,'small':small})
 
 def new_article(request):
     if request.method == 'POST':
@@ -53,6 +59,6 @@ def acc_login(request):
 def article(request,article_id):
     try:
         data = models.DogInfo.objects.get(id=article_id)
-        return render(request,'aritcle.html',{'data':data})
+        return render(request, 'article.html',{'data':data})
     except ObjectDoesNotExist as e:
         return render(request,'404.html')

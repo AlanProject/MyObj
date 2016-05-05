@@ -1,0 +1,11 @@
+.article_list{
+
+}
+.article_list .img_div {
+    height:200px;
+}
+
+.article_list .img_div img{
+    width:100%;
+    height:100%;
+}
