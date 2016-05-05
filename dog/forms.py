@@ -7,6 +7,7 @@ class ArticleForm(forms.Form):
     DogDescribe  = forms.CharField(max_length=255,min_length=5)
     DogType_id = forms.IntegerField()
     DogImg = forms.ImageField()
+    DogColor = forms.CharField(max_length=32)
     DogText = forms.CharField(min_length=10)
 
 def head_img(request,f):

@@ -1,0 +1,60 @@
+{% extends 'template.html' %}
+
+{% block head-template %}
+{% endblock %}
+
+{% block body-template %}
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+            <div class="row">
+                <div class="col-md-4">
+                    <img src="{{ data.DogImg }}">
+                </div>
+
+                <div class="col-md-7 col-md-offset-1">
+                    <table class="table table-hover">
+                        <tr class="danger">
+                            <td>汪星人代号</td>
+                            <td>{{ data.DogName }}</td>
+                        </tr>
+                        <tr class="active">
+                            <td>汪星人类目</td>
+                            <td>{{ data.DogType.TypeName }}</td>
+                        </tr>
+                        <tr class="warning">
+                            <td>汪星人颜色</td>
+                            <td>{{ data.DogColor }}</td>
+                        </tr>
+                        <tr class="info">
+                            <td>所属星球</td>
+                            <td>吉米犬舍</td>
+                        </tr>
+                        <tr class="active">
+                            <td>星主QQ</td>
+                            <td>348729445</td>
+                        </tr>
+                        <tr class="info">
+                            <td>星主微信</td>
+                            <td>wyb115599</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <div class="col-md-push-12">
+                <table class="table table-hover">
+                    <tr class="active">
+                        <td>汪星人简要</td>
+                        <td>{{ data.DogDescribe }}</td>
+                    </tr>
+                </table>
+                <hr>
+            </div>
+            <div class="col-md-12">
+                {{ data.DogText|safe }}
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block bottom-template %}
+{% endblock %}
