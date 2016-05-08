@@ -1,10 +1,59 @@
 {% extends 'template.html' %}
 
 {% block head-template %}
+    <script type="text/javascript" src="/static/plugins/ckeditor/ckeditor.js"></script>
 {% endblock %}
 
 {% block body-template %}
+    <div class="col-md-8 col-md-offset-2">
+        {% if aritcle_obj %}
+            <h3>文章 "{{ aritcle_obj.DogName }}" 已发布 <a href="{% url 'article' aritcle_obj.id %}">点击查看</a></h3>
+        {% else %}
+            <form enctype="multipart/form-data" action="" method="post">{% csrf_token %}
+            <table class="table table-bordered">
+                {#title#}
+                <tr>
+                    <td>狗狗名称</td>
+                    <td><input type="text"  name="DogName" class="form-control" placeholder="狗狗名称"></td>
+                </tr>
+                {#color#}
+                <tr>
+                    <td>狗狗颜色</td>
+                    <td><input type="text" name="DogColor" class="form-control" placeholder="狗狗颜色" ></td>
+                </tr>
+                {#summery#}
+                <tr>
+                    <td>狗狗描述</td>
+                    <td><input type="text" name="DogDescribe" class="form-control" placeholder="狗狗描述" ></td>
+                </tr>
+                {#head_img#}
+                <tr>
+                    <td>狗狗头像</td>
+                    <td><input type="file" name="DogImg"></td>
+                </tr>
+                {#category#}
+                <tr>
+                    <td>选择类目</td>
+                    <td>
+                        <select name="DogType_id" class="form-control">
+                            {% for k,v in DogType_list %}
+                                <option value="{{ k }}">{{ v }}</option>
+                            {% endfor %}
+                        </select>
+                    </td>
+                </tr>
+            </table>
+            <textarea name="DogText"></textarea>
+            <div class="article_submit">
+                <button type="submit" style="float:right;margin-top:15px;width:100px;height:50px;" class="btn btn-success btn-lg">发布</button>
+            </div>
+        </form>
+        {% endif %}
+    </div>
 {% endblock %}
 
 {% block bottom-template %}
+    <script type="text/javascript">
+        CKEDITOR.replace('DogText');
+    </script>
 {% endblock %}

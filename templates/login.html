@@ -1,0 +1,25 @@
+{% extends 'template.html' %}
+{% block head-template %}
+    <link rel="stylesheet" href="/static/css/userlogin.css" />
+{% endblock %}
+
+{% block body-template %}
+    <div class="col-md-3 login_center">
+        <form action="" method="post" class="form-signin">{% csrf_token %}
+            <h2 class="form-signin-heading">用户登录</h2>
+            <label for="inputEmail" class="sr-only">username</label>
+            <input type="text" name="username"  class="form-control" placeholder="User Name" required autofocus>
+
+            <label for="inputPassword" class="sr-only">Password</label>
+            <input type="password" name="passwd"  class="form-control" placeholder="Password" required>
+            <button class="btn btn-lg btn-primary btn-block" type="submit">登录</button>
+
+            <label>
+                <a style="color:red; font-size:12px;">{{ error_messages }}</a>
+            </label>
+        </form>
+    </div>
+{% endblock %}
+
+{% block bottom-template %}
+{% endblock %}

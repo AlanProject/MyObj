@@ -1,10 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+<<<<<<< HEAD
   <component name="DataSourceManagerImpl" format="xml" hash="3523838053">
     <data-source source="LOCAL" name="Django default" uuid="fa64122a-edd3-42a8-8777-e675c2336aac">
       <driver-ref>mysql</driver-ref>
       <jdbc-driver>com.mysql.jdbc.Driver</jdbc-driver>
       <jdbc-url>jdbc:mysql://127.0.0.1/jimi</jdbc-url>
+=======
+  <component name="DataSourceManagerImpl" format="xml" hash="3001015724">
+    <data-source source="LOCAL" name="MySQL - jimi@localhost" uuid="81d6788c-8372-44e2-837d-195d601952a9">
+      <driver-ref>mysql</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>com.mysql.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mysql://localhost:3306/jimi</jdbc-url>
+>>>>>>> 3398686437dcb08b590b4f4b0bd770dfbfa68bb6
       <driver-properties>
         <property name="zeroDateTimeBehavior" value="convertToNull" />
         <property name="tinyInt1isBit" value="false" />

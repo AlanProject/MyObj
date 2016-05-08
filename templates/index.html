@@ -1,12 +1,13 @@
 {% extends 'template.html' %}
 
 {% block head-template %}
+    <link rel="stylesheet" href="/static/css/commont.css">
 {% endblock %}
-
 {% block body-template %}
     <div class="container">
-      <div class="row row-offcanvas row-offcanvas-right">
-        <div class="col-xs-12 col-sm-9">
+{#      <div class="row row-offcanvas row-offcanvas-right">#}
+      <div class="row">
+        <div class="col-xs-12">
           <p class="pull-right visible-xs">
             <button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas">Toggle nav</button>
           </p>
@@ -15,21 +16,12 @@
             <!-- Indicators -->
             <ol class="carousel-indicators">
                  <li data-target="#carousel-example" data-slide-to="0" class="active"></li>
-                 <li data-target="#carousel-example" data-slide-to="1"></li>
-                 <li data-target="#carousel-example" data-slide-to="2"></li>
-             </ol>
+
+            </ol>
             <!-- Wrapper for slides -->
              <div class="carousel-inner" style="height: 300px" >
                  <div class="item active ">
-                     <img  src="http://ww1.sinaimg.cn/large/44287191gw1excbq6tb3rj21400migrz.jpg" alt="..." />
-                     <div class="carousel-caption">...</div>
-                 </div>
-                 <div class="item">
-                     <img  src="http://ww3.sinaimg.cn/large/44287191gw1excbq5iwm6j21400min3o.jpg" alt="..." />
-                     <div class="carousel-caption">...</div>
-                 </div>
-                 <div class="item">
-                     <img src="http://ww2.sinaimg.cn/large/44287191gw1excbq4kx57j21400migs4.jpg" alt="..." />
+                     <img  src="/static/imgs/banner/banner.jpg" alt="..." />
                      <div class="carousel-caption">...</div>
                  </div>
              </div>
@@ -40,76 +32,75 @@
              <a class="right carousel-control" href="#carousel-example" data-slide="next">
              <span class="glyphicon glyphicon-chevron-right"></span></a>
         </div>
-            {#            轮播结束#}
-            <div style="margin-top:15px;" class="alert alert-warning" role="alert">大型犬</div>
-          <div class="row">
-            <div class="col-xs-6 col-lg-4">
-                <a href="#" class="thumbnail">
-                  <img src="http://dz.shangyi35.com/pet/data/attachment/portal/201604/25/154303ebdv195bp9dbvluh.jpg" alt="">
-                    <a class="btn btn-default" href="#" role="button">带我走吧 &raquo;</a>
-                </a>
-            </div><!--/.col-xs-6.col-lg-3-->
-                          <div class="col-xs-6 col-lg-4">
-                <a href="#" class="thumbnail">
-                  <img src="http://dz.shangyi35.com/pet/data/attachment/portal/201604/25/154303ebdv195bp9dbvluh.jpg" alt="">
-                    <a class="btn btn-default" href="#" role="button">带我走吧 &raquo;</a>
-                </a>
-            </div><!--/.col-xs-6.col-lg-3-->
-                          <div class="col-xs-6 col-lg-4">
-                <a href="#" class="thumbnail">
-                  <img src="http://dz.shangyi35.com/pet/data/attachment/portal/201604/25/154303ebdv195bp9dbvluh.jpg" alt="">
-                    <a class="btn btn-default" href="#" role="button">带我走吧 &raquo;</a>
-                </a>
-            </div><!--/.col-xs-6.col-lg-3-->
-          </div><!--/row-->
-            <div style="margin-top:15px;" class="alert alert-warning" role="alert">中型犬</div>
-                      <div class="row">
-            <div class="col-xs-6 col-lg-4">
-                <a href="#" class="thumbnail">
-                  <img src="http://dz.shangyi35.com/pet/data/attachment/portal/201604/25/154303ebdv195bp9dbvluh.jpg" alt="">
-                    <a class="btn btn-default" href="#" role="button">带我走吧 &raquo;</a>
-                </a>
-            </div><!--/.col-xs-6.col-lg-3-->
-                          <div class="col-xs-6 col-lg-4">
-                <a href="#" class="thumbnail">
-                  <img src="http://dz.shangyi35.com/pet/data/attachment/portal/201604/25/154303ebdv195bp9dbvluh.jpg" alt="">
-                    <a class="btn btn-default" href="#" role="button">带我走吧 &raquo;</a>
-                </a>
-            </div><!--/.col-xs-6.col-lg-3-->
-                          <div class="col-xs-6 col-lg-4">
-                <a href="#" class="thumbnail">
-                  <img src="http://dz.shangyi35.com/pet/data/attachment/portal/201604/25/154303ebdv195bp9dbvluh.jpg" alt="">
-                    <a class="btn btn-default" href="#" role="button">带我走吧 &raquo;</a>
-                </a>
-            </div><!--/.col-xs-6.col-lg-3-->
-          </div><!--/row-->
-            <div style="margin-top:15px;" class="alert alert-warning" role="alert">小型犬</div>
-                      <div class="row">
-            <div class="col-xs-6 col-lg-4">
-                <a href="#" class="thumbnail">
-                  <img src="http://dz.shangyi35.com/pet/data/attachment/portal/201604/25/154303ebdv195bp9dbvluh.jpg" alt="">
-                    <a class="btn btn-default" href="#" role="button">带我走吧 &raquo;</a>
-                </a>
-            </div><!--/.col-xs-6.col-lg-3-->
-                          <div class="col-xs-6 col-lg-4">
-                <a href="#" class="thumbnail">
-                  <img src="http://dz.shangyi35.com/pet/data/attachment/portal/201604/25/154303ebdv195bp9dbvluh.jpg" alt="">
-                    <a class="btn btn-default" href="#" role="button">带我走吧 &raquo;</a>
-                </a>
-            </div><!--/.col-xs-6.col-lg-3-->
-                          <div class="col-xs-6 col-lg-4">
-                <a href="#" class="thumbnail">
-                  <img src="http://dz.shangyi35.com/pet/data/attachment/portal/201604/25/154303ebdv195bp9dbvluh.jpg" alt="">
-                    <a>哈士奇 &raquo;</a>
-                </a>
-            </div><!--/.col-xs-6.col-lg-3-->
-          </div><!--/row-->
-        </div><!--/.col-xs-12.col-sm-9-->
-      </div><!--/row-->
+        {#轮播结束#}
+
+        <!--大型犬区域 start-->
+        <div class="alert alert-warning plate" role="alert">大型犬</div>
+        <div class="row article_list">
+            {% for item in big %}
+                <div class="col-xs-6 col-lg-3" style="margin-top:15px;" >
+                    <a style="border:0" href="{% url 'article' item.id %}" class="thumbnail">
+                        <div  style="border:0" class="img_div">
+                            <img src="{{ item.DogImg }}" alt="{% url 'article' item.id %}">
+                        </div>
+                    </a>
+                    <a href="{% url 'article' item.id %}">
+                        <div >
+                            <div class="b left"></div>
+                            <div class="bb left"><a>{{ item.DogName }}</a></div>
+                        </div>
+                    </a>
+                </div>
+            {% endfor %}
+        </div><!--/row-->
+
+        <!--大型犬区域 end-->
+
+        <!--中型犬区域 start-->
+        <div class="alert alert-warning plate" role="alert">中型犬</div>
+        <div class="row article_list">
+            {% for item in inside %}
+                <div class="col-xs-6 col-lg-3">
+                    <a href="{% url 'article' item.id %}" style="border:0" class="thumbnail">
+                        <div class="img_div">
+                            <img src="{{ item.DogImg }}" alt="{% url 'article' item.id %}">
+                        </div>
+                    </a>
+                    <a href="{% url 'article' item.id %}">
+                        <div >
+                            <div class="b left"></div>
+                            <div class="bb left">{{ item.DogName }}</div>
+                        </div>
+                    </a>
+                </div>
+            {% endfor %}
+        </div><!--/row-->
+        <!--中型犬区域 end-->
+
+        <!--小型犬区域 start-->
+        <div class="alert alert-warning plate" role="alert">小型犬</div>
+        <div class="row article_list">
+            {% for item in small %}
+                <div class="col-xs-6 col-lg-3">
+                    <a href="{% url 'article' item.id %}" style="border:0" class="thumbnail">
+                        <div  class="img_div">
+                            <img src="{{ item.DogImg }}" alt="{% url 'article' item.id %}">
+                        </div>
+                    </a>
+                    <a href="{% url 'article' item.id %}">
+                        <div >
+                            <div class="b left"></div>
+                            <div class="bb left">{{ item.DogName }}</div>
+                        </div>
+                    </a>
+                </div>
+            {% endfor %}
+        </div><!--/row-->
+        <!--小型犬区域 end-->
 {% endblock %}
 
 {% block bottom-template %}
-    <script>
+    <script type="text/javascript">
         $(function(){$('.carousel').carousel();});
     </script>
 {% endblock %}

@@ -1,10 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="dataSourceStorageLocal">
+<<<<<<< HEAD
     <data-source name="Django default" uuid="fa64122a-edd3-42a8-8777-e675c2336aac">
       <first-sync>true</first-sync>
       <user-name>jimiadmin</user-name>
       <user-password>dfc0dfc3dfc7dfc3dfdadfcbdfd9dfd9dfdddfce</user-password>
+=======
+    <data-source name="MySQL - jimi@localhost" uuid="81d6788c-8372-44e2-837d-195d601952a9">
+      <secret-storage>master_key</secret-storage>
+      <user-name>jimiadmin</user-name>
+      <schema-pattern>jimi.*</schema-pattern>
+      <default-schemas>jimi.*</default-schemas>
+>>>>>>> 3398686437dcb08b590b4f4b0bd770dfbfa68bb6
     </data-source>
   </component>
 </project>
