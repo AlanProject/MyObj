@@ -46,21 +46,25 @@ def acc_logout(request):
 def acc_login(request):
     err_msg =''
     if request.method == "POST":
-
         username = request.POST.get('username')
         password = request.POST.get('passwd')
-        user = authenticate(username=username,password=password)
+        user = authenticate(username=username, password=password)
         if user is not None:
-            login(request,user)
-            return HttpResponseRedirect('/')
+            login(request, user)
+            return HttpResponseRedirect('/manager')
         else:
             err_msg = "Wrong username or password!"
-    return render(request,'login.html',{'err_msg':err_msg})
+    return render(request, 'login.html', {'err_msg':err_msg})
 
 
-def article(request,article_id):
+def article(request, article_id):
     try:
         data = models.DogInfo.objects.get(id=article_id)
         return render(request, 'article.html',{'data':data})
     except ObjectDoesNotExist as e:
-        return render(request,'404.html')
+        return render(request, '404.html')
+
+@login_required
+def manager  (request):
+    article_data = models.DogInfo.objects.all().values()
+    return render(request, 'manager.html', {'article_data': article_data})

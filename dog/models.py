@@ -11,6 +11,8 @@ class DogInfo(models.Model):
     DogDescribe = models.CharField(max_length=64)
     DogText = models.TextField()
     DogType = models.ForeignKey('DogType')
+    Create_date = models.DateField(auto_now_add=True)
+    Update_date = models.DateField(auto_now=True)
     Author = models.ForeignKey('UserProfile')
 
 class DogType(models.Model):
