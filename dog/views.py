@@ -1,10 +1,12 @@
 #!-*- coding:utf-8 -*-
 from django.shortcuts import render,HttpResponse,HttpResponseRedirect
 from django.contrib.auth import authenticate,login,logout
+from django.contrib.auth.decorators import login_required
 from django.core.exceptions import ObjectDoesNotExist
 import models
 from forms import ArticleForm,head_img
 # Create your views here.
+
 def index(request):
     big = []
     inside = []
@@ -19,7 +21,7 @@ def index(request):
             small.append(dog)
 
     return render(request, 'index.html',{'big':big,'inside':inside,'small':small})
-
+@login_required
 def new_article(request):
     if request.method == 'POST':
         form = ArticleForm(request.POST,request.FILES)
