@@ -4,6 +4,7 @@ from django.contrib.auth import authenticate,login,logout
 from django.contrib.auth.decorators import login_required
 from django.core.exceptions import ObjectDoesNotExist
 import models
+import time
 from forms import ArticleForm,head_img
 # Create your views here.
 
@@ -46,21 +47,43 @@ def acc_logout(request):
 def acc_login(request):
     err_msg =''
     if request.method == "POST":
-
         username = request.POST.get('username')
         password = request.POST.get('passwd')
-        user = authenticate(username=username,password=password)
+        user = authenticate(username=username, password=password)
         if user is not None:
-            login(request,user)
-            return HttpResponseRedirect('/')
+            login(request, user)
+            return HttpResponseRedirect('/manager')
         else:
             err_msg = "Wrong username or password!"
-    return render(request,'login.html',{'err_msg':err_msg})
+    return render(request, 'login.html', {'err_msg':err_msg})
 
 
-def article(request,article_id):
+def article(request, article_id):
     try:
         data = models.DogInfo.objects.get(id=article_id)
         return render(request, 'article.html',{'data':data})
     except ObjectDoesNotExist as e:
-        return render(request,'404.html')
+        return render(request, '404.html')
+
+@login_required
+def manager  (request):
+    article_data = models.DogInfo.objects.all().values()
+    return render(request, 'manager.html', {'article_data': article_data})
+
+def sceneImgUpload(request):
+    if request.method == 'POST':
+        callback = request.GET.get('CKEditorFuncNum')
+        try:
+            path = "uploads/" + time.strftime("%Y%m%d%H%M%S",time.localtime())
+            f = request.FILES["upload"]
+            file_name = path + "_" + f.name
+            des_origin_f = open(file_name, "wb+")
+            for chunk in f.chunks():
+                des_origin_f.write(chunk)
+            des_origin_f.close()
+        except Exception, e:
+            print e
+        res = "<script>window.parent.CKEDITOR.tools.callFunction("+callback+",'/"+file_name+"', '');</script>"
+        return HttpResponse(res)
+    else:
+        pass

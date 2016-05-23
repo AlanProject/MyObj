@@ -1,0 +1,119 @@
+{% extends 'template.html' %}
+
+{% block head-template %}
+    <link href="/static/css/dashboard.css" rel="stylesheet">
+{% endblock %}
+
+{% block body-template %}
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand">Manager</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+            {% if request.user.is_authenticated %}
+              <div  style="padding:10px" class="nav navbar-nav navbar-right dropdown">
+                  <button style="border-radius:0;" class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                    {{ request.user.userprofile.name }}
+                    <span class="caret"></span>
+                  </button>
+                  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                    <li><a href="{% url 'new_article' %}">发帖</a></li>
+                    <li><a href="{% url 'logout' %}">注销</a></li>
+                  </ul>
+              </div>
+            {% endif %}
+          <form class="navbar-form navbar-right">
+            <input type="text" class="form-control" placeholder="搜索......">
+          </form>
+
+        </div>
+      </div>
+    </nav>
+
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-sm-3 col-md-2 sidebar">
+          <ul class="nav nav-sidebar">
+            <li class="active"><a href="{% url 'manager' %}">文章管理<span class="sr-only">(current)</span></a></li>
+          </ul>
+        </div>
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+{#          <h1 class="page-header">Dashboard</h1>#}
+
+{#          <div class="row placeholders">#}
+{#            <div class="col-xs-6 col-sm-3 placeholder">#}
+{#              <img data-src="holder.js/200x200/auto/sky" class="img-responsive" alt="Generic placeholder thumbnail">#}
+{#              <h4>Label</h4>#}
+{#              <span class="text-muted">Something else</span>#}
+{#            </div>#}
+{#          </div>#}
+          <h2 class="sub-header">文章列表</h2>
+          <div class="table-responsive">
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>文章名称</th>
+                  <th>发布日期</th>
+                  <th>更新日期</th>
+                  <th>操作管理</th>
+                  <th>选择</th>
+                </tr>
+              </thead>
+              <tbody>
+              {% for item in article_data %}
+                <tr>
+                  <td>{{ item.id }}</td>
+                  <td>{{ item.DogName }}</td>
+                  <td>{{ item.Create_date }}</td>
+                  <td>{{ item.Update_date }}</td>
+                  <td><a>编辑</a>&nbsp|&nbsp<a data-toggle="modal" data-target="#myModal">删除</a></td>
+                  <td><input type="checkbox"></td>
+                </tr>
+              {% endfor %}
+              </tbody>
+            </table>
+          <div class="col-md-3 col-md-offset-9">
+              <!-- Button trigger modal -->
+              <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModal">删除</button>
+              <button type="button" onclick="CancleALL()" class="btn btn-warning">取消</button>
+              <button type="button" onclick="CheckAll()" class="btn btn-success">全选</button>
+          </div>
+            <!-- Modal -->
+            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">删除提示</h4>
+                  </div>
+                  <div class="modal-body">
+                    <span>确认删除？ 删除后将不可恢复</span>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                    <button type="button" onclick="DataDel(this)" class="btn btn-primary">确认</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+{% endblock %}
+
+{% block bottom-template %}
+        <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <script src="/static/js/holder.min.js"></script>
+    <script src="/static/js/manager.js"></script>
+
+{% endblock %}
