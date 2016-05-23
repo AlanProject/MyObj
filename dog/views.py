@@ -4,8 +4,10 @@ from django.contrib.auth import authenticate,login,logout
 from django.contrib.auth.decorators import login_required
 from django.core.exceptions import ObjectDoesNotExist
 import models
-import time
+from jimi import settings
+import time,json,platform,os
 from forms import ArticleForm,head_img
+from django.views.decorators.csrf import requires_csrf_token
 # Create your views here.
 
 def index(request):
@@ -70,20 +72,50 @@ def manager  (request):
     article_data = models.DogInfo.objects.all().values()
     return render(request, 'manager.html', {'article_data': article_data})
 
-def sceneImgUpload(request):
+# 处理图片附件路径
+def path_format(args):
+    system = platform.system()
+    if system == 'Windows':
+        args = args.replace('\\','/')
+    return args
+# 删除图片文件
+def file_del(filename):
+    data =filename.split('imgs')
+    for k,v in settings.STATICFILES_DIRS:
+        if k == 'imgs':
+            path = path_format(v)
+            path += data[1]
+            os.remove(path)
+
+@requires_csrf_token
+def article_del(request):
     if request.method == 'POST':
-        callback = request.GET.get('CKEditorFuncNum')
-        try:
-            path = "uploads/" + time.strftime("%Y%m%d%H%M%S",time.localtime())
-            f = request.FILES["upload"]
-            file_name = path + "_" + f.name
-            des_origin_f = open(file_name, "wb+")
-            for chunk in f.chunks():
-                des_origin_f.write(chunk)
-            des_origin_f.close()
-        except Exception, e:
-            print e
-        res = "<script>window.parent.CKEDITOR.tools.callFunction("+callback+",'/"+file_name+"', '');</script>"
-        return HttpResponse(res)
+        id_list_tmp = json.loads(request.POST.get('data'))
+        for i in id_list_tmp:
+            article_id = int(i)
+            article_info = models.DogInfo.objects.get(id = article_id)
+            article_info.delete()
+            file_del(article_info.DogImg.name)
+        return HttpResponse('ok')
     else:
-        pass
+        return HttpResponse('get')
+
+
+# def sceneImgUpload(request):
+#     if request.method == 'POST':
+#         callback = request.GET.get('CKEditorFuncNum')
+#         try:
+#             path = "uploads/" + time.strftime("%Y%m%d%H%M%S",time.localtime())
+#             f = request.FILES["upload"]
+#             file_name = path + "_" + f.name
+#             des_origin_f = open(file_name, "wb+")
+#             for chunk in f.chunks():
+#                 des_origin_f.write(chunk)
+#             des_origin_f.close()
+#         except Exception, e:
+#             print e
+#         res = "<script>window.parent.CKEDITOR.tools.callFunction("+callback+",'/"+file_name+"', '');</script>"
+#         return HttpResponse(res)
+#     else:
+#         pass
+
