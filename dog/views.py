@@ -35,11 +35,11 @@ def new_article(request):
             form_data['DogImg'] = new_img_path
             aritcle_obj = models.DogInfo(**form_data)
             aritcle_obj.save()
-            return render(request, 'new.html', {'aritcle_obj':aritcle_obj})
+            return render(request, 'article_put.html', {'aritcle_obj':aritcle_obj})
         else:
             print('err:',form.errors)
     DogType_list = models.DogType.objects.all().values_list()
-    return render(request,'new.html', {'DogType_list':DogType_list})
+    return render(request, 'article_put.html', {'DogType_list':DogType_list})
 
 
 def acc_logout(request):
@@ -68,10 +68,16 @@ def article(request, article_id):
         return render(request, '404.html')
 
 @login_required
-def manager  (request):
-    article_data = models.DogInfo.objects.all().values()
-    return render(request, 'manager.html', {'article_data': article_data})
-
+def manager (request,argv):
+    if argv == '1':
+        article_data = models.DogInfo.objects.all().values()
+        return render(request, 'manager_article.html', {'article_data': article_data})
+    elif argv == '2':
+        section_data = models.DogType.objects.all().values()
+        print section_data
+        return render(request, 'manager_section.html', {'article_data': section_data})
+    else:
+        return render(request, 'manager_article.html')
 # 处理图片附件路径
 def path_format(args):
     system = platform.system()
