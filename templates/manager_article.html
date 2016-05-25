@@ -1,6 +1,13 @@
 {% extends 'manager.html' %}
 {% block manager %}
-<h2 class="sub-header">文章列表</h2>
+<div  class="row">
+    <div class="col-md-6" ><h2 >文章列表</h2></div>
+    <div class="col-md-2 col-md-offset-4" >
+        <a style="padding-top:25px;font-size:20px;font-weight:500" href="{% url 'new_article' %}"><img src="/static/imgs/manager/put.ico">&nbsp发布</a>
+    </div>
+
+</div>
+<hr>
 <div class="table-responsive">
 <table class="table table-striped">
   <thead>

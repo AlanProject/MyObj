@@ -64,18 +64,19 @@ function GetQueryString(name){
      var r = window.location.search.substr(1).match(reg);
      if(r!=null)return  unescape(r[2]); return null;
 }
+
 $(document).ready(function() {
     //点击事件
-    $('.nav li').find('a').click(function(){
-        return false;//阻止a的跳转事件
-    });
-    $('.nav li').click(function(){
+    $('.nav-sidebar li').click(function(){
         var flg=$(this).attr('current_id');
         //获取a的herf属性拼接字符串；a的herf可设置成"javascript:;";阻止a的跳转事件；
-        var url =$(this).find('a').attr('href')+"?flg="+flg;
+        var url =$(this).find('a').attr('data-href')+"?flg="+flg;
         //窗口跳转
         window.location.href=url;
     });
+    //$('.nav-sidebar li').find('a').click(function(){
+    //    //return false;//阻止a的跳转事件
+    //});
     var myflg = GetQueryString("flg");
     $('.nav li[current_id="'+myflg+'"]').addClass('active').siblings('li').removeClass('active');
 });

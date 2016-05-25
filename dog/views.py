@@ -68,7 +68,7 @@ def article(request, article_id):
         return render(request, '404.html')
 
 @login_required
-def manager (request,argv):
+def manager(request, argv):
     if argv == '1':
         article_data = models.DogInfo.objects.all().values()
         return render(request, 'manager_article.html', {'article_data': article_data})
@@ -77,7 +77,8 @@ def manager (request,argv):
         print section_data
         return render(request, 'manager_section.html', {'article_data': section_data})
     else:
-        return render(request, 'manager_article.html')
+        article_data = models.DogInfo.objects.all().values()
+        return render(request, 'manager_article.html', {'article_data': article_data})
 # 处理图片附件路径
 def path_format(args):
     system = platform.system()
