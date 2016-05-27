@@ -5,6 +5,7 @@ from django.contrib.auth.decorators import login_required
 from django.core.exceptions import ObjectDoesNotExist
 import models
 from jimi import settings
+from paging import Paging
 import time,json,platform,os
 from forms import ArticleForm,head_img
 from django.views.decorators.csrf import requires_csrf_token
@@ -69,16 +70,26 @@ def article(request, article_id):
 
 @login_required
 def manager(request, argv):
+    current = request.GET.get('curpag')
+    counts = models.DogInfo.objects.count()
+    dbdata = models.DogInfo.objects.all()
+    pagobj = Paging(current=current, counts=counts, dbdata=dbdata)
+    pag_data = pagobj.handle()
+
+
     if argv == '1':
         article_data = models.DogInfo.objects.all().values()
-        return render(request, 'manager_article.html', {'article_data': article_data})
+        pag_data['article_data']=article_data
+        return render(request, 'manager_article.html', pag_data)
     elif argv == '2':
+
         section_data = models.DogType.objects.all().values()
-        print section_data
-        return render(request, 'manager_section.html', {'article_data': section_data})
+        pag_data['article_data']=section_data
+        return render(request, 'manager_section.html', pag_data)
     else:
         article_data = models.DogInfo.objects.all().values()
-        return render(request, 'manager_article.html', {'article_data': article_data})
+        pag_data['article_data']=article_data
+        return render(request, 'manager_article.html', pag_data,)
 # 处理图片附件路径
 def path_format(args):
     system = platform.system()

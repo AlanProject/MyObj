@@ -33,6 +33,27 @@
   {% endfor %}
   </tbody>
 </table>
+<div class="col-md-9">
+     <nav>
+
+            <ul class="pagination" total="{{ total }}" count="{{ count }}">
+                <li>
+                    <a onclick="action('Previous')" aria-label="Previous">
+                    <span >&laquo;</span>
+                    </a>
+                </li>
+                {% for p in number_list %}
+                    <li tag="pag"><a href="?curpag={{ p }}">{{ p }}</a></li>
+                {% endfor %}
+                <li>
+                    <a onclick="action('Next')" aria-label="Next">
+                    <span >&raquo;</span>
+                    </a>
+                </li>
+            </ul>
+
+        </nav>
+</div>
 <div class="col-md-3 col-md-offset-9">
   <!-- Button trigger modal -->
   <button type="button" onclick="GetCheck()" class="btn btn-danger" data-toggle="modal" data-target="#myModal">删除</button>
@@ -58,4 +79,5 @@
   </div>
 </div>
 </div>
+<script type="text/javascript" src="/static/plugins/paging/pag.js"></script>
 {% endblock %}
