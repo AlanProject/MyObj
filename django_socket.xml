@@ -3,5 +3,5 @@
     <chdir>/Data/webapps/jimi.fengyuba.com/jimi/</chdir>
     <module>django_uwsgi</module>
     <processes>4</processes> <!-- 进程数 -->
-    <daemonize>uwsgi.log</daemonize>
+    <daemonize>/var/log/uwsgi/uwsgi.log</daemonize>
 </uwsgi>
