@@ -22,8 +22,9 @@ function DataDel(){
         $.ajax({
             type:'POST',
             data:{"data":id_list},
-            url:'/manager/article_del/',
+            url:'article_del/',
             success:function (callback){
+                console.log(callback);
                 $('#myModal').modal('hide');
                 window.location.reload()
             }
@@ -54,10 +55,6 @@ function EditArticle(){
     var id = $(this).siblings();
     console.log(id)
 }
-//++++++++++++++++++++++++摸态框++++++++++++++++++++++
-//$("#myModal").modal().css({
-//                 "margin-top":$(this).height()/3}
-//);
 
 
 //获取地址栏参数

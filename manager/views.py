@@ -20,7 +20,8 @@ def manager(request, argv):
     if argv == '1':
         return render(request, 'manager_article.html', pag_data)
     elif argv == '2':
-        return render(request, 'manager_section.html', pag_data)
+        dbdata = models.DogType.objects.all().values()
+        return render(request, 'manager_section.html', {'dbdata':dbdata})
     else:
         return render(request, 'manager_article.html', pag_data,)
 
