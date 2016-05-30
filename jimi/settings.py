@@ -84,7 +84,7 @@ DATABASES = {
         'HOST': 'localhost',
         'PORT': 3306,
         'USER': 'jimiadmin',
-        'PASSWORD': 'jimipasswd',
+        'PASSWORD': 'jimipwd!@$',
     }
 }
 

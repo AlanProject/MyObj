@@ -9,7 +9,9 @@
 {#        <div class="col-md-8 col-md-offset-2">#}
         <h2 class="sub-header">文章发布</h2>
         {% if aritcle_obj %}
-            <h3>文章 "{{ aritcle_obj.DogName }}" 已发布 <a href="{% url 'article' aritcle_obj.id %}">点击查看</a></h3>
+            <h4>文章 "{{ aritcle_obj.DogName }}" 已发布 </h4>
+            <a href="{% url 'article' aritcle_obj.id %}"><button type="button" class="btn btn-success">点击查看</button></a>
+            <a href="{% url 'manager' 1 %}"><button type="button" class="btn btn-success">返  回</button></a>
         {% else %}
             <form enctype="multipart/form-data" action="" method="post">{% csrf_token %}
             <table class="table table-bordered">

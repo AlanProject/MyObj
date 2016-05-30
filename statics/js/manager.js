@@ -18,13 +18,13 @@ function GetCheck(){
 //删除
 function DataDel(){
     var id_list = JSON.stringify(GetCheck());
+    console.log(id_list);
     if (id_list){
         $.ajax({
             type:'POST',
             data:{"data":id_list},
             url:'article_del/',
             success:function (callback){
-                console.log(callback);
                 $('#myModal').modal('hide');
                 window.location.reload()
             }
