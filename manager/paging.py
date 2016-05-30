@@ -30,7 +30,7 @@ class Paging(object):
     def pag_current(self):
         self.current -= 1
         start = self.current*self.number
-        end = self.number*self.current+self.number
+        end = start+self.number
         data = self.obj[start:end]
         return data
 
@@ -43,5 +43,5 @@ class Paging(object):
             end = self.number
         if end > self.total:
             end = self.total
-            start = self.total-9
+            # start = self.total-9
         return range(start, end+1)

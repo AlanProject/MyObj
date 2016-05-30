@@ -5,28 +5,30 @@
 function GetCheck(){
     var id_list = [];
     $.each($(":checkbox"),function(){
+
         if ($(this).prop('checked')){
             var current_id = $(this).parent().siblings().first().html();
             id_list.push(current_id);
         }
+
     });
+    return id_list
 }
 
 //删除
 function DataDel(){
     var id_list = JSON.stringify(GetCheck());
     if (id_list){
-        $.post(
-            'article_del/',
-            {'data':id_list},
-            function (data,success){
+        $.ajax({
+            type:'POST',
+            data:{"data":id_list},
+            url:'/manager/article_del/',
+            success:function (callback){
                 $('#myModal').modal('hide');
                 window.location.reload()
             }
-        )
-
+        });
     }
-
 }
 
 //全选
@@ -74,9 +76,6 @@ $(document).ready(function() {
         //窗口跳转
         window.location.href=url;
     });
-    //$('.nav-sidebar li').find('a').click(function(){
-    //    //return false;//阻止a的跳转事件
-    //});
     var myflg = GetQueryString("flg");
     $('.nav li[current_id="'+myflg+'"]').addClass('active').siblings('li').removeClass('active');
 });

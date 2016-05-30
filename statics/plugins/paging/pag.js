@@ -19,26 +19,38 @@ function getlist(){
 
 //获取当前点击的选项
 function action(args){
+    //从前端获取当前
     var total = Number($('.pagination').attr('total'));
     var count = Number($('.pagination').attr('count'));
     var data = getlist();
     var new_list = [];
     if (args == 'Next'){
-        var end = data[count-1]+count;
-        if (end >= total){
-            var start = total-9;
-            for ( var i=start;i<=total;i++){
+        console.log(data.length);
+        if (total <= count){
+            for ( var i=1;i<=total;i++){
                 new_list.push(i)
             }
         }else{
-            $.each(data, function (k,v) {
-                v += count;
-                new_list.push(v)
-            })
+            var end = data[count-1]+count;
+            if (end >= total){
+                var start = total-count-1;
+                for ( var i=start;i<=total;i++){
+                    new_list.push(i)
+                }
+            }else{
+                $.each(data, function (k,v) {
+                    v += count;
+                    new_list.push(v)
+                })
+            }
         }
     }else if(args == 'Previous'){
-        if (data[0]-count <= 1){
-            for (var i=1;i<=10;i++){
+        if (count >= total){
+            for (var i=1;i<=total;i++){
+                new_list.push(i)
+            }
+        }else if (data[0]-count <= 1){
+            for (var i=1;i<=count;i++){
                 new_list.push(i)
             }
         }else{
@@ -49,7 +61,6 @@ function action(args){
             }
     }
     update(new_list);
-
 }
 
 //根据选项对列表页码进行处理并返回
